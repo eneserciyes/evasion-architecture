@@ -1,6 +1,6 @@
 import gymnasium as gym
 from gymnasium import spaces
-import pygame
+# import pygame
 
 import numpy as np
 import random
@@ -123,8 +123,8 @@ class EvasionEnv(gym.Env):
             Config(max_walls=max_walls, next_wall_interval=next_wall_interval)
         )
         # for rendering, use pygame
-        pygame.init()
-        self.screen = pygame.display.set_mode((MaxWidth, MaxHeight))
+        # pygame.init()
+        # self.screen = pygame.display.set_mode((MaxWidth, MaxHeight))
 
     def step_the_game(self, hunter_action: HunterAction, prey_action: Optional[PreyAction] = None):
         if prey_action is None:
@@ -185,19 +185,20 @@ class EvasionEnv(gym.Env):
         return get_observation_from_game_state(self.game), {} # obs, info
 
     def render(self):
-        self.screen.fill((255, 255, 255))
-        # draw hunter
-        pygame.draw.circle(self.screen, (0, 0, 255), (self.game.hunter_position.x, self.game.hunter_position.y), 5)
-        # draw prey
-        pygame.draw.circle(self.screen, (255, 0, 0), (self.game.prey_position.x, self.game.prey_position.y), 5)
-        # draw walls
-        for wall in self.game.walls:
-            if isinstance(wall, Horizontal):
-                pygame.draw.line(self.screen, (0, 0, 0), (wall.x1, wall.y), (wall.x2, wall.y))
-            elif isinstance(wall, Vertical):
-                pygame.draw.line(self.screen, (0, 0, 0), (wall.x, wall.y1), (wall.x, wall.y2))
-        # update the screen
-        pygame.display.update()
+        pass
+        # self.screen.fill((255, 255, 255))
+        # # draw hunter
+        # pygame.draw.circle(self.screen, (0, 0, 255), (self.game.hunter_position.x, self.game.hunter_position.y), 5)
+        # # draw prey
+        # pygame.draw.circle(self.screen, (255, 0, 0), (self.game.prey_position.x, self.game.prey_position.y), 5)
+        # # draw walls
+        # for wall in self.game.walls:
+        #     if isinstance(wall, Horizontal):
+        #         pygame.draw.line(self.screen, (0, 0, 0), (wall.x1, wall.y), (wall.x2, wall.y))
+        #     elif isinstance(wall, Vertical):
+        #         pygame.draw.line(self.screen, (0, 0, 0), (wall.x, wall.y1), (wall.x, wall.y2))
+        # # update the screen
+        # pygame.display.update()
 
     def close(self):
         pass
